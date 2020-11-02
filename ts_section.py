@@ -63,7 +63,7 @@ def mean_std_stat(df_cy50_mkt):
 
     return df_stat
 
-class ts_clustering:
+class TsClustering:
 
     def __init__(self, df_factor,model_save_name):
         self.df_factor = df_factor
@@ -127,10 +127,10 @@ if __name__ == '__main__':
     df.dropna(axis=0,inplace=True)
 
     # 初始化
-    class_cluster = ts_clustering(df, model_save_name='test.pkl')
+    class_cluster = TsClustering(df, model_save_name='test.pkl')
     df_train_bin, df_test_bin = class_cluster.run()
-    # df_train.to_csv('data/k-means_train_sz50.csv')
-    # df_test.to_csv('data/k-means_test_cy50.csv')
+    df_train_bin.to_csv('result/k-means_train_cy50.csv')
+    df_test_bin.to_csv('result/k-means_test_cy50.csv')
 
     # 统计聚类效果
     df_cy50_mkt['bin'] = df_train_bin['bin']
